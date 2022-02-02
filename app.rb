@@ -1,8 +1,16 @@
-require 'sinatra'
-require "sinatra/reloader" if development?
-  
+require "sinatra"
+require 'sinatra/reloader' if development?
+
 get '/' do
   "Hello World"
+end
+
+get '/test' do
+  "Testing"
+end
+
+get '/secret' do
+  "Shh"
 end
 
 get '/random-cat' do
@@ -10,12 +18,13 @@ get '/random-cat' do
   erb(:index)
 end
 
-get '/named-cat' do
-  p params
+post '/named-cat' do
   @name = params[:name]
+  puts @name
   erb(:index)
 end
 
-# get '/secret' do
-#   "I did it my way"
-# end
+get '/cat-form' do 
+  erb(:cat_form)
+end 
+
