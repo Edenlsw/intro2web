@@ -1,5 +1,11 @@
 
 
 <h1>
-<%= @player1 %> VS. <%= @player2 %>
+<%= @player1 %> vs. <%= @player2 %>
 </h1>
+
+<form action="/welcome" method="post">
+  <input type="text" name="player1">
+  <input type="text" name="player2">
+  <input type="submit" value="To Battle!">
+</form>
