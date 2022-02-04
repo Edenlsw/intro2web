@@ -2,31 +2,39 @@ require 'sinatra/base'
 # require 'sinatra/reloader'
 
 class Battle < Sinatra::Base
+  enable :sessions
+
+  get '/' do
+    erb(:index)
+  end
+
+  post '/names' do
+    session[:player1] = params[:player1]
+    session[:player2] = params[:player2]
+    redirect '/play'
+  end
+
+  get '/play' do 
+    @player1 = session[:player1]
+    @player2 = session[:player2]
+    erb :play
+  end
 
   
 
-  # Sinatra::Reloader
 
-  get '/' do
-    "Testing infrastructure working!"
-    erb :index
-  end
 
-  post '/welcome' do
-    p params
-    @player1 = params[:player1]
-    @player2 = params[:player2]
-    erb(:index)
-  end
 
-  get '/form' do
-    erb(:form)
-    # "working?"
-  end
-  post '/new' do 
-    @name = params[:name]
-    erb(:index)
-  end
 
-#   run! if app_file == $0
+
+
+
+  # post '/new' do 
+  #   # @player1 = params[:player1]
+  #   # @player2 = params[:player2]
+  #   @name = params[:name]
+  #   erb(:index)
+  # end
+
+  run! if app_file == $0
  end
