@@ -8,8 +8,7 @@ feature 'Testing infastructure' do
   scenario 'user can fill in name on form' do 
     sign_in_and_play
     expect(page).to have_content 'eden vs. luce'
+  end
 
 
-
-end
 end
